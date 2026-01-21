@@ -35,7 +35,9 @@ public class NetworkPlayerController : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        if(_actions != null)
+        _moveAction = null; 
+
+        if (_actions != null)
         {
             _actions.Disable();
             _actions.Dispose();
@@ -43,18 +45,22 @@ public class NetworkPlayerController : NetworkBehaviour
         }
     }
 
+
     private void Update()
     {
         if (!IsOwner) return;
+        if (!IsSpawned) return;
+
+        var nm = NetworkManager.Singleton;
+        if (nm == null || (!nm.IsClient && !nm.IsServer))
+            return; // NetworkManager not started / not connected
+
         if (_moveAction == null) return;
 
         Vector2 input = _moveAction.ReadValue<Vector2>();
-
-        // Convert (x,y) to world move (x,y)
         Vector3 move = new Vector3(input.x, 0f, input.y);
         if (move.sqrMagnitude > 1f) move.Normalize();
 
-        // Make movement camera-relative
         Transform cam = Camera.main != null ? Camera.main.transform : null;
         if (cam != null)
         {
@@ -63,16 +69,15 @@ public class NetworkPlayerController : NetworkBehaviour
             move = right * move.x + forward * move.z;
         }
 
-        // Send desired direction to server
         SubmitMoveRpc(move, Time.deltaTime);
 
-        // Local rotate responsiveness
         if (faceMoveDirection && move.sqrMagnitude > 0.0001f)
         {
             Quaternion target = Quaternion.LookRotation(move, Vector3.up);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, target, rotationSpeed * Time.deltaTime);
         }
     }
+
 
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Owner)]
     private void SubmitMoveRpc(Vector3 worldMoveDir, float deltaTime, RpcParams rpcParams = default)
