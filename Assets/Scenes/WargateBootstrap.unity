@@ -364,6 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bootstrapper
   mainMenuSceneName: WargateMainMenu
+  sceneController: {fileID: 1522481377}
 --- !u!1 &1038960100
 GameObject:
   m_ObjectHideFlags: 0
