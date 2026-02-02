@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/WargateBootstrap.unity
     guid: a5d669017d6a25347b819511942f8225
   - enabled: 1
+    path: Assets/Scenes/WargateMainMenu.unity
+    guid: c76c67e7b239c5a41adebc03f17dffc8
+  - enabled: 1
+    path: Assets/Scenes/WargateLobby.unity
+    guid: 0f16ccabe0ff40f41b9483f6914782e1
+  - enabled: 1
     path: Assets/Scenes/NetTest.unity
     guid: 7a85d65542e1b224b9fe494cd96295d5
   m_configObjects:
