@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Project/Scenes/NetTest.unity
+    path: Assets/Scenes/WargateBootstrap.unity
+    guid: a5d669017d6a25347b819511942f8225
+  - enabled: 1
+    path: Assets/Scenes/NetTest.unity
     guid: 7a85d65542e1b224b9fe494cd96295d5
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 491a2f489d5390c4e96c953aac48c7bd, type: 3}

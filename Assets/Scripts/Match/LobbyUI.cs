@@ -14,7 +14,7 @@ public class LobbyUI : MonoBehaviour
     private void Start()
     {
         readyButton.onClick.AddListener(ToggleReady);
-        InvokeRepeating(nameof(Refresh), 0.1f, 0.2f); // quick & dirty refresh
+        InvokeRepeating(nameof(Refresh), 0.1f, 0.2f);
     }
 
     private void ToggleReady()
